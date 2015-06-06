@@ -93,16 +93,19 @@ THE SOFTWARE.*/
 		$.filePool[JSNode+'uploading'] = false;
 		if(settings.autoSubmit)
 			$('form input[type="file"]',JSNode).change(function(event){
+				event = event || window.event;
 				JSAjaxFileUploader.onChange(JSNode,event.originalEvent.target.files);
 				$(this).val('');
 			});
 		else{
 			var filesSelected=null;
 			$('form input[type="file"]',JSNode).change(function(event){
+				event = event || window.event;
 				filesSelected = event.originalEvent.target.files;
 				$('form label.JSFileCount',JSNode).html(filesSelected.length+' file(s) selected');
 			});
 			$('form .startJSuploadButton',JSNode).click(function(event){
+				event = event || window.event;
 				event.preventDefault();
 				if(filesSelected == null || filesSelected == undefined || filesSelected.length <= 0){alert('No Files Selected'); return;}
 				JSAjaxFileUploader.onChange(JSNode,filesSelected);
