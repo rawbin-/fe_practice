@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>纯CSS实现的点击缩略图看满屏大图，带有关闭按钮，背景变灰 - 分享JavaScript-sharejs.com</title>
+<meta name="Copyright" content="JavaScript分享网 http://www.sharejs.com/" />
+<meta name="description" content="纯CSS实现的点击缩略图看满屏大图，带有关闭按钮，背景变灰,JavaScript分享网" />
+<meta content="JavaScript,分享,JavaScript代码,Ajax" name="keywords" />
+<style type="text/css">
+.thumbholder {width:600px; margin:0 auto;}
+a.clickbox, a.clickbox:visited, a.clickbox:hover {text-decoration:none;}
+a.clickbox img {display:block; border:0;}
+
+a.clickbox b {display:block;}
+
+a.clickbox {float:left; margin:0 15px 15px 0; display:inline;}
+
+a.clickbox .lightbox {position:absolute; left:-9999px; top:0; cursor:default; z-index:500;}
+
+a.clickbox .light {position:absolute; left:0; top:0; width:100%;}
+a.clickbox .box {position:absolute; left:0; width:100%; text-align:center; height:300px; top:40%; margin-top:-150px;}
+/* trigger for IE6 */
+a.clickbox:active {direction:ltr;}
+
+a.clickbox:active .lightbox {left:0; width:100%; height:100%;}
+a.clickbox .lightbox:hover,
+a.clickbox:focus .lightbox {position:fixed; left:0; width:100%; height:100%;}
+
+a.clickbox .lightbox:hover .light,
+a.clickbox:active .lightbox .light,
+a.clickbox:focus .lightbox .light {background:#000; width:100%; height:100%; filter: alpha(opacity=75);
+ filter: progid:DXImageTransform.Microsoft.Alpha(opacity=75); opacity:0.75;
+}
+
+a.clickbox .lightbox:hover .box img,
+a.clickbox:active .lightbox .box img,
+a.clickbox:focus .lightbox .box img {border:2px solid #000; margin:0 auto; padding:30px; background:#fff;}
+
+a.clickbox .lightbox:hover .box span,
+a.clickbox:active .lightbox .box span,
+a.clickbox:focus .lightbox .box span {display:block; font:normal 11px/18px verdana, sans-serif; width:400px; padding:0; margin:10px auto; text-align:center; text-decoration:none; color:#ddd;}
+
+.clear {clear:left;}
+
+a.clickbox i {display:block; width:16px; height:16px; position:fixed; right:-100px; top:0; z-index:500;}
+
+a.clickbox .lightbox:hover i,
+a.clickbox:active i,
+a.clickbox:focus i {right:10px; top:10px; background:url(trees/close.gif);}
+
+#close {display:block; position:fixed; width:16px; height:16px; right:10px; top:10px; z-index:1000; background:url(trans.gif); cursor:pointer;}
+
+
+</style>
+
+<!--[if lte IE 6]>
+<style type="text/css">
+/* to get IE6 to center the Clickbox - adjust the height to cover the whole page */
+a.clickbox:active .lightbox {left:50%; margin-left:-2500px; height:2000px; width:5000px;}
+a.clickbox:active .lightbox .light {height:2000px;}
+a.clickbox i {display:block; width:16px; height:16px; overflow:hidden; float:right; cursor:pointer; position:static; background:url(trees/close.gif);}
+a.clickbox .frame {width:500px; height:300px; background:#fff; border:1px solid #000; padding:10px;}
+a.clickbox .box {top:5%; margin-top:0;}
+</style>
+<![endif]-->
+</head>
+<body>
+
+<div class="thumbholder">
+<p>sharejs.com提醒您：点击缩略图，图片将会放大，显示在屏幕中间，点击右上角的关闭按钮可以退出。</p>
+<br />
+	<a class="clickbox" href="#url">
+		<img src="trees/th1.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t1.jpg" alt="" />
+				<span>Daffodil is a common English name, sometimes used now for all varieties, and is the chief common name of horticultural prevalence used by the American Daffodil Society.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th2.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t2.jpg" alt="" />
+				<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae sem orci, eget ultrices leo. Morbi nec nisl et odio vestibulum sodales.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th3.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t3.jpg" alt="" />
+				<span>Fusce interdum massa eget nibh viverra at tincidunt lectus tempor. Mauris orci tortor, sagittis a elementum in, consectetur a purus.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th4.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t4.jpg" alt="" />
+				<span>Un hac habitasse platea dictumst. Fusce sit amet lacus erat.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th5.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t5.jpg" alt="" />
+				<span>Ut rhoncus semper eleifend. Aenean lorem massa, varius nec volutpat in.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th6.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t6.jpg" alt="" />
+				<span>Duis diam lectus, vestibulum eget porta ut, aliquam ut urna.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th7.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t7.jpg" alt="" />
+				<span>Aliquam pretium risus eu ipsum eleifend euismod vitae at augue.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th8.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t8.jpg" alt="" />
+				<span>Etiam at mi ut diam accumsan congue.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th9.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t9.jpg" alt="" />
+				<span>Broin quis nibh vel dui vulputate bibendum vitae id tortor.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th10.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t10.jpg" alt="" />
+				<span>Mauris sit amet diam luctus justo faucibus facilisis.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th11.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t11.jpg" alt="" />
+				<span>Ut vitae quam tortor, quis tempor metus.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/ph1.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/p1.jpg" alt="" />
+				<span>Donec consectetur, nunc at luctus blandit, ipsum sapien varius turpis, nec ultrices nisl massa vel dui.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th13.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t13.jpg" alt="" />
+				<span>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th14.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t14.jpg" alt="" />
+				<span>Donec sed eros purus, nec congue urna.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th15.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t15.jpg" alt="" />
+				<span>Cras placerat purus sed turpis ultricies aliquam.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th16.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t16.jpg" alt="" />
+				<span>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.<br /><i></i></span>
+			</b>
+		</b>
+	</a>
+	<a class="clickbox" href="#url">
+		<img src="trees/th17.jpg" alt="" />
+		<b class="lightbox">
+			<b class="light"></b>
+			<b class="box">
+				<img src="trees/t17.jpg" alt="" />
+				<span>It mattis sagittis sem auctor imperdiet. <br /><i></i></span>
+			</b>
+		</b>
+	</a>
+
+	<br class="clear" />
+	<p>You can also have a text link to the 'Clickbox' image :</p>
+	<a class="clickbox" href="#url">Click to view palm tree<b class="lightbox"><b class="light"></b><b class="box"><img src="trees/t18.jpg" alt="" /><span>Vestibulum aliquet sagittis orci, eget sodales arcu vulputate non.<br /><i></i></span></b></b></a>
+	<br /><br /><br /><br />
+	<div id="close"></div>
+
+
+</div>
+
+<br><br>
+<div align="center">
+
+<script language="javascript" src="http://www.sharejs.com/js/720.js"></script>
+<br><br>
+
+获取更多JavaScript代码，请登录JavaScript分享网 <a href="http://www.sharejs.com">http://www.sharejs.com</a>
+<br>
+转载请注明出处，本代码仅供学习交流，不可用于任何商业用途！
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<head>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+  <script src="../morris.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.js"></script>
+
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css">
+  <link rel="stylesheet" href="../morris.css">
+</head>
+<body>
+<h1>Formatting Non-date Arbitrary X-axis</h1>
+<div>hide--->add--->show will not work</div>
+<input type="button" id="add" value="add"/>
+<input type="button" id="hide" value="hide-display-none"/>
+<input type="button" id="show" value="show-display-block"/>
+<input type="button" id="visible" value="visible"/>
+<input type="button" id="hidden" value="hidden"/>
+<div style="float:left"></div>
+<div id="graphs"></div>
+<script type="text/javascript">
+var day_data = [
+  {"elapsed": "I", "value": 34},
+  {"elapsed": "II", "value": 24},
+  {"elapsed": "III", "value": 3},
+  {"elapsed": "IV", "value": 12},
+  {"elapsed": "V", "value": 13},
+  {"elapsed": "VI", "value": 22},
+  {"elapsed": "VII", "value": 5},
+  {"elapsed": "VIII", "value": 26},
+  {"elapsed": "IX", "value": 12},
+  {"elapsed": "X", "value": 19}
+];
+var counter = 1;
+function add_graph(){
+    $("#graphs").empty();
+    console.log('<div id="graph',counter,'"></div>')
+    console.log('<div id="graph' + counter +'"></div>');
+    console.log($('<div id="graph' + counter +'"></div>'));    
+    $("#graphs").append($('<div id="graph' + counter +'"></div>'));
+    console.log('graph' + counter)
+    Morris.Line({
+      element: 'graph' + counter,
+      data: day_data,
+      xkey: 'elapsed',
+      ykeys: ['value'],
+      labels: ['value'],
+      parseTime: false
+    });
+    counter++;
+}
+
+$(function(){
+    $("#add").on('click',function(){
+        console.log(1111);
+        add_graph();
+        console.log(2222);
+    });
+    $("#hide").on('click',function(){
+        $("#graphs").hide();
+    });
+    $("#show").on('click',function(){
+        $("#graphs").show();
+    });;
+    $("#visible").on('click',function(){
+        $("#graphs").css('visibility','visible')
+    });
+    $("#hidden").on('click',function(){
+        $("#graphs").css('visibility','hidden')
+    });;
+});
+</script>
+</body>

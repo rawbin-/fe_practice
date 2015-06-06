@@ -1,0 +1,53 @@
+<!doctype html>
+<head>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+  <script src="morris.js"></script>
+  <link rel="stylesheet" href="morris.css">
+</head>
+<body>
+<h1>Formatting Non-date Arbitrary X-axis</h1>
+<div id="graphs"></div>
+<div id="graph2" style="height:200px;width:150px;"></div>
+<script type="text/javascript">
+var day_data = [
+  {"elapsed": "I", "value": 34},
+  {"elapsed": "II", "value": 24},
+  {"elapsed": "III", "value": 3},
+  {"elapsed": "IV", "value": 12},
+  {"elapsed": "V", "value": 13},
+  {"elapsed": "VI", "value": 22},
+  {"elapsed": "VII", "value": 5},
+  {"elapsed": "VIII", "value": 26},
+  {"elapsed": "IX", "value": 12},
+  {"elapsed": "X", "value": 19}
+];
+$("#graphs").append($('<div id="graph1"></div>'));
+Morris.Line({
+  element: 'graph1',
+  data: day_data,
+  xkey: 'elapsed',
+  ykeys: ['value'],
+  labels: ['value'],
+  parseTime: false,
+  smooth: true
+  
+});
+
+Morris.Line({
+  element: 'graph2',
+  data: day_data,
+  xkey: 'elapsed',
+  ykeys: ['value'],
+  labels: ['value'],
+  parseTime: false,
+  smooth: true
+  
+});
+
+$("#graphs")[0].style.display="none";
+$("#graphs")[0].style.display="block";
+$("#graphs")[0].style.display="none";
+$("#graphs")[0].style.display="block";
+</script>
+</body>
