@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>postMessage Test Source</title>
+    <script type="text/javascript">
+        window.addEventListener('message',function(evt){
+           console.log('target getmessage:',evt.data); 
+        });
+        window.parent.postMessage('##target message##','http://source.test.com');
+    </script>    
+</head>
+<body>
+    
+</body>
+</html>

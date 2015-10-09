@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Cross Origin Test</title>
+    <script type="text/javascript">
+        var websocket = new WebSocket("ws://target.test.org:9000");
+        websocket.onopen = function(){
+            console.log('websocket opened');
+            websocket.send('I am opened');
+        }
+        
+        websocket.onmessage = function(evt){
+            console.log('recevie message')
+            console.log(evt.data)
+        }
+        
+        websocket.onclose = function(){
+            console.log('websocket closed')
+        }
+        
+        websocket.onerror = function(){
+            console.log('websocket meets error')
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
