@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cross doamin resource sharing test</title>
+    <script type="text/javascript">
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                console.log(xhr.responseText)
+            }
+        }
+        
+        xhr.open('POST','http://target.test.org:9000/getInfo.json',true)
+        xhr.send();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsonp Test</title>
+    <script type="text/javascript">
+        
+        // function JSONPCallback(){
+        //     console.log(arguments[0])
+        // }
+        
+        // function loadScript(url){
+        //     var script = document.createElement('script');      
+        //     script.src = url;
+            
+        //     document.head.appendChild(script);
+        // }
+        
+        // loadScript("http://target.test.org:9000/getData.do?callback=JSONPCallback")
+        
+        
+        function proxyFunc(callback){
+            callback(arguments[0]);
+        }
+        
+        function getJSON(url,callback){
+            var script = document.createElement('script');      
+         
+            script.onload = script.onratechange = function(){
+                if(this.readyState == 'complete'){
+                    proxyFunc(callback);
+                }
+            }
+            
+            script.src = url.replace("JSONPCallback","proxyFunc");
+            document.head.appendChild(script);
+        }
+        
+        getJSON("http://target.test.org:9000/getData.do?callback=JSONPCallback",function(data){
+            console.log(data)
+        })
+        
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="jquery.cookie.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        var authUrl = "http://auth.test.com:9000/login.action?callback=?"
+        if(!$.cookie('logined')){
+            $.ajax({
+                url:authUrl,
+                dataType:'jsonp'
+            }).done(function(){
+                window.console && console.log('login.action successed')
+            }).fail(function(){
+                window.console && console.log('login.action failed')
+            }).always(function(){
+                window.location.reload();
+            })
+        }else{
+            window.console && console.log('using the exists info');
+        }
+        window.console && console.log("login status:",$.cookie('logined'))
+        window.console && console.log("session info:",$.cookie('sessionid'))
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>document.domain test</title> 
+</head>
+<body>
+    <iframe src="http://target.test.com/target.html"></iframe>
+</body>
+    <script type="text/javascript">
+        document.domain = "test.com";
+        window.onload = function(){
+            var doc = window.frames[0].document;
+            console.log(doc.getElementById('tid').outerHTML);
+            console.log(doc.body.innerHTML)
+            setTimeout(function(){
+                doc.body.innerHTML = "data from source.test.com"
+            },3000)
+        }
+    </script>  
+</html>
