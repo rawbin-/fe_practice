@@ -19,20 +19,24 @@
         // loadScript("http://target.test.org:9000/getData.do?callback=JSONPCallback")
         
         
-        function proxyFunc(callback){
-            callback(arguments[0]);
-        }
+        
+        //下面这个是jQuery风格的JSONP,更容易理解
         
         function getJSON(url,callback){
             var script = document.createElement('script');      
-         
+            var callbackName = "ProxyFunc_" + (new Date().getTime())
+            
+            window[callbackName] = function(){
+                callback(arguments[0]);
+            };
+            
             script.onload = script.onratechange = function(){
                 if(this.readyState == 'complete'){
-                    proxyFunc(callback);
+                   window[callbackName] = null;
                 }
             }
             
-            script.src = url.replace("JSONPCallback","proxyFunc");
+            script.src = url.replace("JSONPCallback",callbackName);
             document.head.appendChild(script);
         }
         
