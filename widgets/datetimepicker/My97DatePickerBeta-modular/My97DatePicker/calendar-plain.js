@@ -1,4 +1,3 @@
-(function(){
 if($cfg.eCont) {
     $dp = {
     };
@@ -36,7 +35,7 @@ if($FF) {
     });
 }
 function My97DP() {
-    window.$c = $c = this;
+    $c = this;
     this.QS = [];
     $d = document.createElement("div");
     $d.className = "WdateDiv";
@@ -1579,7 +1578,3 @@ function _tab(M) {
     }
 }
 document.ready = 1;
-    window.My97DP = My97DP;
-    window.$c = $c;
-
-}())
