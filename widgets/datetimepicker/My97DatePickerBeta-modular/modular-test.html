@@ -1,0 +1,23 @@
+<script type="text/javascript">
+    (function(){
+        var testVar = "0000";
+        function testChange(){
+            console.log("A:",testVar)
+            console.log(window.testVar === testVar)
+            testVar = '1111';
+            //window.testVar = '1111';
+            console.log("B:",testVar)
+            console.log(window.testVar === testVar)
+        }
+        
+        window.testChange = testChange;
+        window.testVar = testVar;
+    }());
+    
+    testChange();
+    console.log(testVar)
+    
+    
+    
+    
+</script>
