@@ -1,0 +1,22 @@
+<script src="./jquery.js"></script>
+
+<script type="text/javascript">
+$.ajax({
+	url:'http://test.org:9000/api.json',
+	method:'POST',
+	data:JSON.stringify({a:1,b:2}),
+	dataType:'json',
+	//crossDomain: false,
+	crossDomain: true == !(document.all),
+	beforeSend:function(jqXHR){
+		jqXHR.setRequestHeader('customHeader',"测试Header")
+		jqXHR.setRequestHeader('testHeader',"测试Header")
+	},
+	success:function(resp){
+		console.log(resp)
+	},
+	error:function(error){
+		console.error(error)
+	}
+});
+</script>
