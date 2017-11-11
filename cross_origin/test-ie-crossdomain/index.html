@@ -2,15 +2,26 @@
 
 <script type="text/javascript">
 $.ajax({
-	url:'http://test.org:9000/api.json',
-	method:'POST',
-	data:JSON.stringify({a:1,b:2}),
-	dataType:'json',
-	//crossDomain: false,
+    type:'post',
+    url:'http://test.org:9000/api.json',
+    data:'',
+	contentType:'application/json;charset=utf-8',
+	dataType: 'json',
+	async: false,
 	crossDomain: true == !(document.all),
+	//crossDomain:false,
+	// headers:{
+	// 	customHeader:"customHeader",
+	// 	testHeader:"testHeader",
+	// 	Authorization:"testAuthorization"
+
+	// },
 	beforeSend:function(jqXHR){
-		jqXHR.setRequestHeader('customHeader',"测试Header")
-		jqXHR.setRequestHeader('testHeader',"测试Header")
+		jqXHR.setRequestHeader('customHeader',"customHeader")
+		jqXHR.setRequestHeader('testHeader',"testHeader")
+		jqXHR.setRequestHeader('Authorization',"testAuthorization")
+        //header 里面内容不能带中文
+		//jqXHR.setRequestHeader('Authorization',"测试Authorization")		
 	},
 	success:function(resp){
 		console.log(resp)
