@@ -1,11 +1,39 @@
 <script src="./jquery.js"></script>
 
 <script type="text/javascript">
+
+$.ajax({
+	url: "http://api.baiwang.com/api/service/getInvoice",
+	type: "post",
+	data: "ZnBkbT0xNTAwMDc4OTk2ODkmZnBobT0xMDAwMDExNQ==",
+	contentType: "application/json",
+	crossDomain:true == !(document.all),
+	success: function (data) {
+		console.log(data)
+	},
+	error: function (error) {
+		console.error(error)
+	}
+});
+
+$.ajax({
+	url:'http://api.baiwang.com/api/service/getSignatureIcon',
+	type:'post',
+	data:JSON.stringify({"sellerTaxNo":"91500000747150501A","invoiceCode":"150007899689"}),
+	contentType:'application/json',
+	crossDomain:true == !(document.all),
+	success: function (data) {
+		console.log(data)
+	},
+	error: function (error) {
+		console.error(error)
+	}
+});
 $.ajax({
     type:'post',
     url:'http://test.org:9000/api.json',
     data:'',
-	contentType:'application/json;charset=utf-8',
+	contentType:'application/json',
 	dataType: 'json',
 	async: false,
 	crossDomain: true == !(document.all),
